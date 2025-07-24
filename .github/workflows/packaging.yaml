@@ -27,13 +27,13 @@ jobs:
           - {r_version: 'release', os: ubuntu, version: cu124, runner: [self-hosted, linux]}
           
           - {r_version: 'release', os: windows, version: cpu, runner: windows-2022}
-          - {r_version: 'release', os: windows, version: cu124, runner: windows-2022}
+          - {r_version: 'release', os: windows, version: cu129, runner: windows-2022}
           
         include:
           
-          - config: {version: cu124}
-            cuda: 12.4
-            cuda_patch: 1
+          - config: {version: cu129}
+            cuda: 12.9
+            cuda_patch: 0
           
           - config: {os: ubuntu}
             container: ubuntu:20.04
@@ -72,7 +72,7 @@ jobs:
 
       - name: Install CUDA
         if: ${{matrix.cuda != ''}}
-        uses: Jimver/cuda-toolkit@v0.2.24
+        uses: Jimver/cuda-toolkit@v0.2.26
         id: cuda-toolkit
         with:
           cuda: "${{matrix.cuda}}.${{matrix.cuda_patch}}"
